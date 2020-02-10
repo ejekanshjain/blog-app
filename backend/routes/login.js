@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
                         exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24),
                         data: user[0]
                     }, process.env.JWT_SECRET)
-                    res.status(200).json({ message: "Login Successfull", results: result, token })
+                    res.status(200).json({ status: 200, message: "Login Successfull", results: result, token })
                 } else {
                     res.status(400).json({ status: 400, message: 'Invalid Email or Password' })
                 }
