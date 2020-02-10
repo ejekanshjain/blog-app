@@ -1,0 +1,70 @@
+GET http://localhost:5000
+
+
+### Check Server Status
+
+
+GET http://localhost:5000/api
+
+
+### Get all Users
+GET http://localhost:5000/api/v1/users
+
+
+### Get particular User
+GET http://localhost:5000/api/v1/users/5e3ffba65bad3a38dc0509cd
+
+
+### Register User / Add User
+POST http://localhost:5000/api/v1/users
+Content-Type: application/json
+
+{
+    "name": "Ekansh Jain",
+    "email": "ejekanshjain@gmail.com",
+    "password": "password"
+}
+
+
+### Login User
+POST http://localhost:5000/api/v1/login
+Content-Type: application/json
+
+{
+    "email": "ejekanshjain@gmail.com",
+    "password": "password"
+}
+
+
+### Get all Posts for Newsfeed Homepage
+GET http://localhost:5000/api/v1/posts?feed=true
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODEzNTMwNTUsImRhdGEiOnsiX2lkIjoiNWUzZmZiYTY1YmFkM2EzOGRjMDUwOWNkIiwibmFtZSI6IkVrYW5zaCBKYWluIiwiZW1haWwiOiJlamVrYW5zaGphaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkbEYxZXZ1SmdmQzBON2ZJQzRJN0tyT0cubHE1NmFpSHpuZElZd2MvWVJiM2F1TFRnSGZtR0siLCJjcmVhdGVkQXQiOiIyMDIwLTAyLTA5VDEyOjMxOjM0LjExN1oiLCJ1cGRhdGVkQXQiOiIyMDIwLTAyLTA5VDEyOjMxOjM0LjExN1oiLCJfX3YiOjB9LCJpYXQiOjE1ODEyNjY2NTV9.8-AFHeooTiQ_w6BS_eNBpKW6ZHkWBVckXDQCqlfs71c
+
+
+### Get all Posts of logged in user
+GET http://localhost:5000/api/v1/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODEzNTMwNTUsImRhdGEiOnsiX2lkIjoiNWUzZmZiYTY1YmFkM2EzOGRjMDUwOWNkIiwibmFtZSI6IkVrYW5zaCBKYWluIiwiZW1haWwiOiJlamVrYW5zaGphaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkbEYxZXZ1SmdmQzBON2ZJQzRJN0tyT0cubHE1NmFpSHpuZElZd2MvWVJiM2F1TFRnSGZtR0siLCJjcmVhdGVkQXQiOiIyMDIwLTAyLTA5VDEyOjMxOjM0LjExN1oiLCJ1cGRhdGVkQXQiOiIyMDIwLTAyLTA5VDEyOjMxOjM0LjExN1oiLCJfX3YiOjB9LCJpYXQiOjE1ODEyNjY2NTV9.8-AFHeooTiQ_w6BS_eNBpKW6ZHkWBVckXDQCqlfs71c
+
+
+### Get all Posts of a particular user
+GET http://localhost:5000/api/v1/posts?user=5e403dcd1000793694bd2276
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODEzNTMwNTUsImRhdGEiOnsiX2lkIjoiNWUzZmZiYTY1YmFkM2EzOGRjMDUwOWNkIiwibmFtZSI6IkVrYW5zaCBKYWluIiwiZW1haWwiOiJlamVrYW5zaGphaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkbEYxZXZ1SmdmQzBON2ZJQzRJN0tyT0cubHE1NmFpSHpuZElZd2MvWVJiM2F1TFRnSGZtR0siLCJjcmVhdGVkQXQiOiIyMDIwLTAyLTA5VDEyOjMxOjM0LjExN1oiLCJ1cGRhdGVkQXQiOiIyMDIwLTAyLTA5VDEyOjMxOjM0LjExN1oiLCJfX3YiOjB9LCJpYXQiOjE1ODEyNjY2NTV9.8-AFHeooTiQ_w6BS_eNBpKW6ZHkWBVckXDQCqlfs71c
+
+
+### Get a particular Post
+GET http://localhost:5000/api/v1/posts/123
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODEzNTMwNTUsImRhdGEiOnsiX2lkIjoiNWUzZmZiYTY1YmFkM2EzOGRjMDUwOWNkIiwibmFtZSI6IkVrYW5zaCBKYWluIiwiZW1haWwiOiJlamVrYW5zaGphaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkbEYxZXZ1SmdmQzBON2ZJQzRJN0tyT0cubHE1NmFpSHpuZElZd2MvWVJiM2F1TFRnSGZtR0siLCJjcmVhdGVkQXQiOiIyMDIwLTAyLTA5VDEyOjMxOjM0LjExN1oiLCJ1cGRhdGVkQXQiOiIyMDIwLTAyLTA5VDEyOjMxOjM0LjExN1oiLCJfX3YiOjB9LCJpYXQiOjE1ODEyNjY2NTV9.8-AFHeooTiQ_w6BS_eNBpKW6ZHkWBVckXDQCqlfs71c
+
+
+### Add Post / Create Post
+POST http://localhost:5000/api/v1/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODEzNTMwNTUsImRhdGEiOnsiX2lkIjoiNWUzZmZiYTY1YmFkM2EzOGRjMDUwOWNkIiwibmFtZSI6IkVrYW5zaCBKYWluIiwiZW1haWwiOiJlamVrYW5zaGphaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkbEYxZXZ1SmdmQzBON2ZJQzRJN0tyT0cubHE1NmFpSHpuZElZd2MvWVJiM2F1TFRnSGZtR0siLCJjcmVhdGVkQXQiOiIyMDIwLTAyLTA5VDEyOjMxOjM0LjExN1oiLCJ1cGRhdGVkQXQiOiIyMDIwLTAyLTA5VDEyOjMxOjM0LjExN1oiLCJfX3YiOjB9LCJpYXQiOjE1ODEyNjY2NTV9.8-AFHeooTiQ_w6BS_eNBpKW6ZHkWBVckXDQCqlfs71c
+Content-Type: application/json
+
+{
+    "title": "My Post 1",
+    "body": "this is my first post's body"
+}
+
+
+###

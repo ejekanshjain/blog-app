@@ -10,7 +10,11 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+// Setting Up Daatabase
+const db = require('./db/db')
+
 // Routes
+app.use('/api/v1', require('./routes/routes'))
 
 // Server status
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: 'Server up and running' }))
