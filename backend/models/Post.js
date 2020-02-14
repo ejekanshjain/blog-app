@@ -10,7 +10,8 @@ const Post = new mongoose.Schema({
         required: true
     },
     createdBy: {
-        type: String,
+        // type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     }
 }, {

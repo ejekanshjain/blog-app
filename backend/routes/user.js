@@ -3,8 +3,8 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 
-const UserSchema = require('../models/validationSchemas').UserSchema
-const User = require('../models/User')
+const { UserSchema } = require('../models/validationSchemas')
+const { User } = require('../models')
 
 // Get Requests
 router.get('/', async (req, res) => {

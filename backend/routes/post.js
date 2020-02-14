@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const PostSchema = require('../models/validationSchemas').PostSchema
-const Post = require('../models/Post')
-const authToken = require('../middlewares/authToken')
+const { PostSchema } = require('../models/validationSchemas')
+const { Post } = require('../models')
+const { authToken } = require('../middlewares')
 
 router.use(authToken)
 
@@ -11,7 +11,49 @@ router.use(authToken)
 router.get('/', async (req, res) => {
     try {
         let posts
-        if (req.query.feed) posts = await Post.find().sort({ createdAt: -1 })
+        // if (req.query.feed) posts = await Post.aggregate([
+        //     {
+        //         $lookup: {
+        //             from: "users",
+        //             let: { createdBy: "$createdBy" },
+        //             pipeline: [
+        //                 {
+        //                     $match: {
+        //                         $expr:
+        //                             { $eq: [{ $toObjectId: "$$createdBy" }, "$_id"] }
+        //                     }
+        //                 }
+        //             ],
+        //             as: "userInfo"
+        //         }
+        //     }
+        // ])
+        if (req.query.feed) posts = await Post.aggregate([
+            {
+                $lookup: {
+                    from: 'users',
+                    localField: 'createdBy',
+                    foreignField: '_id',
+                    as: 'userInfo'
+                }
+            }, {
+                $sort: {
+                    createdAt: -1
+                }
+            }, {
+                $project: {
+                    '_id': 1,
+                    'title': 1,
+                    'body': 1,
+                    'createdBy': 1,
+                    'createdAt': 1,
+                    'updatedAt': 1,
+                    'userInfo._id': 1,
+                    'userInfo.name': 1,
+                    'userInfo.email': 1
+                }
+            }
+        ])
         else if (req.query.user) posts = await Post.find({ createdBy: req.query.user })
         else posts = await Post.find({
             createdBy: req.authUser.data._id
