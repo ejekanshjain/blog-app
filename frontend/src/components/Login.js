@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 
+import { apiKey, baseUrl } from '../config'
+
 const Login = ({ stateObj, setStateObj }) => {
     const [error, setError] = useState({})
     useEffect(() => {
@@ -11,10 +13,11 @@ const Login = ({ stateObj, setStateObj }) => {
     const passwordRef = useRef()
     const submitHandle = e => {
         e.preventDefault()
-        fetch('http://localhost:5000/api/v1/login', {
+        fetch(`${baseUrl}/api/v1/login`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'x-api-key': apiKey
             },
             body: JSON.stringify({
                 email: emailRef.current.value,
@@ -24,6 +27,7 @@ const Login = ({ stateObj, setStateObj }) => {
             .then(res => res.json())
             .then(json => {
                 if (json.status !== 200) {
+                    passwordRef.current.value = ''
                     setError({
                         message: json.message
                     })
@@ -56,13 +60,13 @@ const Login = ({ stateObj, setStateObj }) => {
                     <div className="row">
                         <div className="col-sm-6">
                             <label>Email</label>
-                            <input type="text" ref={emailRef} />
+                            <input type="text" ref={emailRef} required />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-sm-6">
                             <label>Password</label>
-                            <input type="password" ref={passwordRef} />
+                            <input type="password" ref={passwordRef} required />
                         </div>
                     </div>
                     <div className="row">

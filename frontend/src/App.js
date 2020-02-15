@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import Login from './components/Login'
+import Home from './components/Home'
 
 const App = () => {
     const [stateObj, setStateObj] = useState({})
@@ -16,7 +17,7 @@ const App = () => {
     if (stateObj.isLoggedIn) {
         return (
             <div className="container-fluid">
-                Hello {stateObj.user.name}!
+                <Home stateObj={stateObj} setStateObj={setStateObj} />
             </div>
         )
     } else {
