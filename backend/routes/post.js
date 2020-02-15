@@ -83,7 +83,7 @@ router.post('/', (req, res) => {
 })
 
 // Patch Requests
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', (req, res) => {
     PostSchema.validateAsync(req.body)
         .then(async ({ title, body }) => {
             try {

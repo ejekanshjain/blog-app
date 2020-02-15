@@ -40,6 +40,18 @@ Content-Type: application/json
 }
 
 
+### Update User
+PATCH http://localhost:5000/api/v1/users
+x-api-key: jUG9rrf8Zx5zYtFTJmyzvqaGjS9njBhacRGZhFSjHsQUw5g9yrPHJsH55mz4Z62n
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODE3ODgzNDYsImRhdGEiOnsiX2lkIjoiNWUzZmZiYTY1YmFkM2EzOGRjMDUwOWNkIiwibmFtZSI6IkVrYW5zaCBKYWluIiwiZW1haWwiOiJlamVrYW5zaGphaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkbEYxZXZ1SmdmQzBON2ZJQzRJN0tyT0cubHE1NmFpSHpuZElZd2MvWVJiM2F1TFRnSGZtR0siLCJjcmVhdGVkQXQiOiIyMDIwLTAyLTA5VDEyOjMxOjM0LjExN1oiLCJ1cGRhdGVkQXQiOiIyMDIwLTAyLTA5VDEyOjMxOjM0LjExN1oiLCJfX3YiOjB9LCJpYXQiOjE1ODE3MDE5NDZ9.pDTx-YMCOLh-BLTM4QyEAdqRKBOmAd2dD1kjhrs95b8
+Content-Type: application/json
+
+{
+    "name": "Ekansh Jain",
+    "email": "ejekanshjain@gmail.com"
+}
+
+
 ### Get all Posts for Newsfeed Homepage
 GET http://localhost:5000/api/v1/posts?feed=true
 x-api-key: jUG9rrf8Zx5zYtFTJmyzvqaGjS9njBhacRGZhFSjHsQUw5g9yrPHJsH55mz4Z62n

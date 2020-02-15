@@ -3,8 +3,9 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 
-const { UserSchema } = require('../models/validationSchemas')
+const { UserSchema, UserPatchSchema } = require('../models/validationSchemas')
 const { User } = require('../models')
+const { authToken } = require('../middlewares')
 
 // Get Requests
 router.get('/', async (req, res) => {
@@ -46,6 +47,28 @@ router.post('/', (req, res) => {
             try {
                 const user = await userObj.save()
                 res.status(201).json({ status: 201, message: 'User created Successfully' })
+            } catch (err) {
+                if (err.errmsg.includes('E11000 duplicate key error')) {
+                    res.status(400).json({ status: 400, message: 'Email already exists' })
+                } else {
+                    console.log(err)
+                    res.status(500).json({ status: 500, message: 'Internal Server Error' })
+                }
+            }
+        })
+        .catch(reason => {
+            res.status(400).json({ status: 400, message: reason.details[0].message })
+        })
+})
+
+// Patch Requests
+router.patch('/', authToken, (req, res) => {
+    UserPatchSchema.validateAsync(req.body)
+        .then(async ({ name, email }) => {
+            try {
+                const { nModified } = await User.updateOne({ _id: req.authUser.data._id }, { $set: { name, email } })
+                if (nModified == 0) return res.status(404).json({ status: 404, message: 'User Not Found' })
+                res.status(200).json({ status: 200, message: 'User Updated Successfully', updatedCount: nModified })
             } catch (err) {
                 if (err.errmsg.includes('E11000 duplicate key error')) {
                     res.status(400).json({ status: 400, message: 'Email already exists' })
