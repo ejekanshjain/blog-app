@@ -10,7 +10,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-// Setting Up Daatabase
+// Setting Up Database
 const db = require('./db/db')
 
 // Routes
