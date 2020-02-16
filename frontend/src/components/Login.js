@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 
 import { apiKey, baseUrl } from '../config'
 
-const Login = ({ stateObj, setStateObj }) => {
+const Login = ({ userState, setUserState }) => {
     const [error, setError] = useState({})
     useEffect(() => {
         setError({
@@ -35,7 +35,7 @@ const Login = ({ stateObj, setStateObj }) => {
                     setError({
                         message: ''
                     })
-                    setStateObj({
+                    setUserState({
                         isLoggedIn: true,
                         user: json.results,
                         token: json.token
@@ -44,40 +44,42 @@ const Login = ({ stateObj, setStateObj }) => {
             })
             .catch(err => alert('Internal Server Error'))
     }
-    if (stateObj.isLoggedIn) return (
-        // TODO React Router
-        <div>LOL</div>
-    )
-    return (
-        <div className="container">
-            <div className="row">
-                <form className="col-sm-12" onSubmit={submitHandle}>
-                    <div className="row">
-                        <div className="col-sm-6">
-                            <span>{error.message}</span>
+    if (userState.isLoggedIn) {
+        return (
+            <div>LOL</div>
+        )
+    } else {
+        return (
+            <div className="container">
+                <div className="row">
+                    <form className="col-sm-12" onSubmit={submitHandle}>
+                        <div className="row">
+                            <div className="col-sm-6">
+                                <span>{error.message}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-sm-6">
-                            <label>Email</label>
-                            <input type="text" ref={emailRef} required />
+                        <div className="row">
+                            <div className="col-sm-6">
+                                <label>Email</label>
+                                <input type="text" ref={emailRef} required />
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-sm-6">
-                            <label>Password</label>
-                            <input type="password" ref={passwordRef} required />
+                        <div className="row">
+                            <div className="col-sm-6">
+                                <label>Password</label>
+                                <input type="password" ref={passwordRef} required />
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-sm-6">
-                            <button>Submit</button>
+                        <div className="row">
+                            <div className="col-sm-6">
+                                <button>Submit</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default Login
