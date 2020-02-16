@@ -20,7 +20,6 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    if (process.env.APPLICATION_ENVIRONMENT != 'DEVELOPMENT') return res.status(404).send('Cannot GET /api/v1/users')
     try {
         const user = await User.find({
             _id: req.params.id
