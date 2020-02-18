@@ -2,7 +2,7 @@ $(document).ready(async () => {
     const userState = JSON.parse(localStorage.getItem('userState'))
     if (userState == null) {
         const element = `<nav>
-            <div class="nav-wrapper teal">
+            <div class="nav-wrapper cyan">
                 <a href="./" class="brand-logo">Blog App</a>
                 <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
@@ -24,7 +24,7 @@ $(document).ready(async () => {
             location.href = baseUri + '/signin.html'
         } else {
             const element = `<nav>
-            <div class="nav-wrapper teal">
+            <div class="nav-wrapper light-blue">
                 <a href="./" class="brand-logo">Blog App</a>
                 <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
