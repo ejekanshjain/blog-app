@@ -7,11 +7,11 @@ $('form').submit(async e => {
     e.preventDefault()
     $('.btn-signup').attr('disabled', true)
     if (document.getElementById('password').value !== document.getElementById('confirmpassword').value) {
-        return M.toast({ html: 'Passwords do not match!', completeCallback: () => $('.btn-signup').attr('disabled', false) })
+        M.toast({ html: 'Passwords do not match!', completeCallback: () => $('.btn-signup').attr('disabled', false) })
     } else if (document.getElementById('password').value.trim().length < 6) {
-        return M.toast({ html: 'Password length must be greater than or equal to 6!', completeCallback: () => $('.btn-signup').attr('disabled', false) })
+        M.toast({ html: 'Password length must be greater than or equal to 6!', completeCallback: () => $('.btn-signup').attr('disabled', false) })
     } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('email').value))) {
-        return M.toast({ html: 'Email must be a valid email', completeCallback: () => $('.btn-signup').attr('disabled', false) })
+        M.toast({ html: 'Email must be a valid email', completeCallback: () => $('.btn-signup').attr('disabled', false) })
     } else {
         const data = {}
         const elements = document.getElementById('signup').elements
