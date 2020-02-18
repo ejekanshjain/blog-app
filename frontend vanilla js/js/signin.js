@@ -13,6 +13,7 @@ $('form').submit(async e => {
             data[item.name] = item.value
         }
     })
+    if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('email')))) return M.toast({ html: 'Email must be a valid email!', displayLength: 2000, completeCallback: () => $('.btn-signin').attr('disabled', false) })
     let result = await fetch(apiEndPoint + '/signin', {
         method: 'POST',
         headers: {

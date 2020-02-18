@@ -80,31 +80,35 @@ $('form').submit(async e => {
     if (userState.user.name == name && userState.user.email == email) {
         M.toast({ html: 'Already up to date' })
     } else {
-        const data = { name, email }
-        let result = await fetch(apiEndPoint + '/users', {
-            method: 'PATCH',
-            headers: {
-                'x-api-key': apiKey,
-                'Authorization': 'Bearer ' + userState.token,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        result = await result.json()
-        if (result.status == 200 && result.updatedCount == 1) {
-            const newUserState = {
-                user: result.results[0],
-                token: userState.token,
-                expAt: userState.expAt
-            }
-            localStorage.setItem('userState', JSON.stringify(newUserState))
-            M.toast({ html: result.message })
-        } else {
-            M.toast({
-                html: result.message,
-                displayLength: 1000,
-                completeCallback: () => location.href = baseUri + '/signin.html'
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            const data = { name, email }
+            let result = await fetch(apiEndPoint + '/users', {
+                method: 'PATCH',
+                headers: {
+                    'x-api-key': apiKey,
+                    'Authorization': 'Bearer ' + userState.token,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
             })
+            result = await result.json()
+            if (result.status == 200 && result.updatedCount == 1) {
+                const newUserState = {
+                    user: result.results[0],
+                    token: userState.token,
+                    expAt: userState.expAt
+                }
+                localStorage.setItem('userState', JSON.stringify(newUserState))
+                M.toast({ html: result.message })
+            } else {
+                M.toast({
+                    html: result.message,
+                    displayLength: 1000,
+                    completeCallback: () => location.href = baseUri + '/signin.html'
+                })
+            }
+        } else {
+            M.toast({ html: 'Email must be a valid email!' })
         }
     }
     $('.btn-update-profile').attr('disabled', false)
