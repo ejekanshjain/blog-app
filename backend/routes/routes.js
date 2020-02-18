@@ -7,6 +7,6 @@ router.use(authApiKey)
 
 router.use('/users', require('./user'))
 router.use('/posts', require('./post'))
-router.use('/login', require('./login'))
+router.use('/signin', require('./signin'))
 
 module.exports = router

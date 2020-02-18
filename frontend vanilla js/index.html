@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Import Google Icon Font -->
+    <link href="./css/google-material-icons.css" rel="stylesheet">
+    <!-- Import materialize.css -->
+    <link type="text/css" rel="stylesheet" href="./css/materialize.css" media="screen,projection" />
+    <!-- Import style.css -->
+    <link href="./css/style.css" rel="stylesheet">
+    <!-- Import index.css -->
+    <link href="./css/index.css" rel="stylesheet">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog App</title>
+</head>
+
+<body>
+    <section>
+        <!-- NavBar -->
+        <nav>
+            <div class="nav-wrapper teal">
+                <a href="./" class="brand-logo">Blog App</a>
+                <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li class="active"><a><i class="material-icons right">home</i>Home</a></li>
+                    <li><a href="./profile.html"><i class="material-icons right">person</i>Profile</a></li>
+                    <li><a href="./about.html"><i class="material-icons right">info</i>About</a></li>
+                    <li>
+                        <a href="#signoutmodal" class="modal-trigger">
+                            <i class="material-icons right">power_settings_new</i>
+                            Sign Out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <ul class="sidenav" id="mobile-demo">
+            <li class="active"><a><i class="material-icons right">home</i>Home</a></li>
+            <li><a href="./profile.html"><i class="material-icons right">person</i>Profile</a></li>
+            <li><a href="./about.html"><i class="material-icons right">info</i>About</a></li>
+            <li>
+                <a href="#signoutmodalm" class="modal-trigger">
+                    <i class="material-icons right">power_settings_new</i>
+                    Sign Out
+                </a>
+            </li>
+        </ul>
+        <!-- Sign Out Modal Structure for mobile devices -->
+        <div id="signoutmodalm" class="modal bottom-sheet">
+            <div class="modal-content">
+                <h3 class="purple-text">Sign Out</h3>
+                <p>Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-close waves-effect waves-red btn-flat red-text text-accent-4">Nope</a>
+                <a class="modal-close waves-effect waves-green btn-flat signout green-text text-accent-4">Yep</a>
+            </div>
+        </div>
+        <!-- Sign Out Modal Structure for web devices -->
+        <div id="signoutmodal" class="modal">
+            <div class="modal-content">
+                <h3 class="purple-text">Sign Out</h3>
+                <p>Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-close waves-effect waves-red btn-flat red-text text-accent-4">Nope</a>
+                <a class="modal-close waves-effect waves-green btn-flat signout green-text text-accent-4">Yep</a>
+            </div>
+        </div>
+    </section>
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <section class="container">
+        <div class="row">
+            <div class="col s12">
+                <h5 class="cyan-text text-darken-3">Latest Feed</h5>
+            </div>
+        </div>
+        <div class="feed row">
+            <!-- <div class="col s12 m6 l6" id="testpost">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            Test Post - Node.js
+                            <i class="material-icons right">expand_less</i></span>
+                        <blockquote class="truncate blockquote-custom-border">
+                            Test body
+                            Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+                            Node.js is an open-source, cross-platform, JavaScript runtime environment that executes
+                            JavaScript code outside of a
+                            browser. Node.js lets developers use JavaScript to write command line tools and for
+                            server-side scripting—running
+                            scripts server-side to produce dynamic web page content before the page is sent to the
+                            user's web browser. Consequently,
+                            Node.js represents a "JavaScript everywhere" paradigm,[6] unifying web-application
+                            development around a single
+                            programming language, rather than different languages for server- and client-side scripts.
+                        </blockquote>
+                        <p class="purple-text text-accent-3">Mon Feb 18 2020</p>
+                        <p>
+                            <a href="./profile.html?user=5e4b72aea805410082491041"
+                                class="orange-text text-accent-4 tooltipped" data-position="bottom"
+                                data-tooltip="View Profile">Ekansh Jain</a>
+                        </p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">
+                            <i class="material-icons right">close</i>
+                        </span>
+                        <p>
+                            Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+                            Node.js is an open-source, cross-platform, JavaScript runtime environment that executes
+                            JavaScript code outside of a
+                            browser. Node.js lets developers use JavaScript to write command line tools and for
+                            server-side scripting—running
+                            scripts server-side to produce dynamic web page content before the page is sent to the
+                            user's web browser. Consequently,
+                            Node.js represents a "JavaScript everywhere" paradigm,[6] unifying web-application
+                            development around a single
+                            programming language, rather than different languages for server- and client-side scripts.
+                        </p>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </section>
+    <!-- Floating action button -->
+    <section>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large pink">
+                <i class="large material-icons">mode_edit</i>
+            </a>
+            <ul>
+                <li>
+                    <a class="btn-floating blue tooltipped modal-trigger" href="#createpostmodal" data-position="left"
+                        data-tooltip="Create Post">+</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Create Post Modal -->
+        <div id="createpostmodal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Create Post</h4>
+                <div class="input-field">
+                    <input id="post_title" type="text" class="validate" required>
+                    <label for="post_title">Title</label>
+                </div>
+                <div class="input-field">
+                    <textarea id="post_body" class="materialize-textarea" required></textarea>
+                    <label for="post_body">Body</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-close waves-effect waves-red btn-flat">
+                    <i class="material-icons">cancel</i>
+                </a>
+                <a class="waves-effect waves-green btn-flat createpost">
+                    <i class="material-icons">done</i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Import jquery.js -->
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <!-- Import materialize.js -->
+    <script type="text/javascript" src="./js/materialize.js"></script>
+    <!-- Import script.js -->
+    <script type="text/javascript" src="./js/script.js"></script>
+    <!-- Import index.js -->
+    <script type="text/javascript" src="./js/index.js"></script>
+</body>
+
+</html>

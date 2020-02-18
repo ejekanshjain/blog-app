@@ -19,12 +19,16 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', authToken, async (req, res) => {
     try {
         const user = await User.find({
             _id: req.params.id
         })
-        res.status(200).json({ status: 200, results: user })
+        const { _id, name, email, createdAt, updatedAt } = user[0]
+        let userObj = {
+            _id, name, email, createdAt, updatedAt
+        }
+        res.status(200).json({ status: 200, results: [userObj] })
     } catch (err) {
         console.log(err)
         res.status(500).json({ status: 500, message: 'Internal Server Error' })
@@ -67,7 +71,17 @@ router.patch('/', authToken, (req, res) => {
             try {
                 const { nModified } = await User.updateOne({ _id: req.authUser.data._id }, { $set: { name, email } })
                 if (nModified == 0) return res.status(404).json({ status: 404, message: 'User Not Found' })
-                res.status(200).json({ status: 200, message: 'User Updated Successfully', updatedCount: nModified })
+                const newUsers = await User.find({
+                    _id: req.authUser.data._id
+                })
+                let updatedUser = {
+                    _id: newUsers[0]._id,
+                    name: newUsers[0].name,
+                    email: newUsers[0].email,
+                    createdAt: newUsers[0].createdAt,
+                    updatedAt: newUsers[0].updatedAt
+                }
+                res.status(200).json({ status: 200, message: 'User Updated Successfully', results: [updatedUser], updatedCount: nModified })
             } catch (err) {
                 if (err.errmsg.includes('E11000 duplicate key error')) {
                     res.status(400).json({ status: 400, message: 'Email already exists' })
