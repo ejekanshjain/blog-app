@@ -9,7 +9,6 @@ $(document).ready(async () => {
             location.href = baseUri + '/signin.html'
         }
     }
-    M.AutoInit()
     let result = await fetch(apiEndPoint + '/posts?feed=true', {
         method: 'GET',
         headers: {
@@ -52,6 +51,7 @@ $(document).ready(async () => {
     } else {
         M.toast({ html: result.message, displayLength: 2000, completeCallback: () => location.href = './signin.html' })
     }
+    M.AutoInit()
     $('#preloader').remove()
 })
 

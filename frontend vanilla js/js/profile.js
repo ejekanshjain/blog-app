@@ -24,6 +24,7 @@ $(document).ready(async () => {
                 completeCallback: () => location.href = baseUri + '/signin.html'
             })
         }
+        getUsersPost(userId, userState.token)
     } else {
         let result = await getUserProfile(userState.user._id, userState.token)
         result = await result.json()
@@ -36,6 +37,7 @@ $(document).ready(async () => {
                 completeCallback: () => location.href = baseUri + '/signin.html'
             })
         }
+        getUsersPost(userState.user._id, userState.token)
     }
     M.AutoInit()
     $('#preloader').remove()
@@ -66,6 +68,46 @@ const setUserProfile = ({ name, email, createdAt, updatedAt }, isSelfUser) => {
         emailInstance.addClass('validate')
         const element = `<div class="row grey-text text-darken-2">Last Updated at: ${Date(updatedAt).toString()}</div>`
         $('#profile').append(element)
+    }
+}
+
+const getUsersPost = async (id, token) => {
+    let result = await fetch(apiEndPoint + `/posts?user=${id}`, {
+        method: 'GET',
+        headers: {
+            'x-api-key': apiKey,
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    result = await result.json()
+    if (result.status == 200) {
+        result.results.map(post => {
+            const date = new Date(post.createdAt)
+            const element = `<div class="col s12 m6 l6" id="${post._id}">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            ${post.title}
+                            <i class="material-icons right">expand_less</i></span>
+                        <blockquote class="truncate blockquote-custom-border">
+                            ${post.body}
+                        </blockquote>
+                        <p class="purple-text text-accent-3">${date.toDateString()}</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">
+                            <i class="material-icons right">close</i>
+                        </span>
+                        <p>
+                            ${post.body}
+                        </p>
+                    </div>
+                </div>
+            </div>`
+            $('.user-feed').append(element)
+        })
+    } else {
+        M.toast({ html: result.message, displayLength: 2000, completeCallback: () => location.href = './signin.html' })
     }
 }
 
